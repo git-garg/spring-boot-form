@@ -1,8 +1,5 @@
 package ec.com.empresa.app.controlador;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -20,7 +17,10 @@ public class FormularioControlador {
 	public String form(Model model) {
 		model.addAttribute("titulo", "Formulario usuario");
 		// model.addAttribute("usuarioModelAttribute", new Usuario());
-		model.addAttribute("usuario", new Usuario());
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Juan");
+		usuario.setApellido("Pérez");
+		model.addAttribute("usuario", usuario);
 		return "form";
 	}
 
@@ -34,12 +34,13 @@ public class FormularioControlador {
 
 		if (resultado.hasErrors()) {
 
-			Map<String, String> errores = new HashMap<>();
-			resultado.getFieldErrors().forEach(err -> {
-				errores.put(err.getField(),
-						"El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())));
-			});
-			model.addAttribute("error", errores);
+//			Map<String, String> errores = new HashMap<>();
+//			resultado.getFieldErrors().forEach(err -> {
+//				errores.put(err.getField(),
+//						"El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())));
+//			});
+//			model.addAttribute("error", errores);
+			
 			return "form";
 		}
 
