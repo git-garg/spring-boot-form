@@ -4,6 +4,8 @@ import javax.validation.constraints.NotEmpty;
 
 public class Usuario {
 
+	private String identificador;
+
 	@NotEmpty
 	private String nombre;
 
@@ -18,6 +20,14 @@ public class Usuario {
 
 	@NotEmpty
 	private String email;
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
 
 	public String getNombre() {
 		return nombre;

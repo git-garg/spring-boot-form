@@ -7,10 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ec.com.empresa.app.modelo.dominio.Usuario;
 
 @Controller
+@SessionAttributes("usuario")
 public class FormularioControlador {
 
 	@GetMapping("/form")
@@ -18,15 +21,16 @@ public class FormularioControlador {
 		model.addAttribute("titulo", "Formulario usuario");
 		// model.addAttribute("usuarioModelAttribute", new Usuario());
 		Usuario usuario = new Usuario();
+		usuario.setIdentificador("123.369.987-GA");
 		usuario.setNombre("Juan");
-		usuario.setApellido("Pérez");
+		usuario.setApellido("PÃ©rez");
 		model.addAttribute("usuario", usuario);
 		return "form";
 	}
 
 	@PostMapping("/form")
 	public String procesar(@Valid /* @ModelAttribute("usuarioModelAttribute") */ Usuario usuario,
-			BindingResult resultado, Model model
+			BindingResult resultado, Model model, SessionStatus estado
 	// @RequestParam String username, @RequestParam String password,
 	// @RequestParam String email
 	) {
@@ -54,6 +58,8 @@ public class FormularioControlador {
 //		usuario.setUsername(username);
 
 		model.addAttribute("usuario", usuario);
+		estado.setComplete();
+		
 
 		return "resultado";
 	}
