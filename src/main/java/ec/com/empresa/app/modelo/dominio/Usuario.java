@@ -1,24 +1,31 @@
 package ec.com.empresa.app.modelo.dominio;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 
 	private String identificador;
 
-	@NotEmpty
+	//@NotEmpty(message = "campo requerido")
+	@NotEmpty //Este mensaje es el de messages.properties
 	private String nombre;
 
 	@NotEmpty
 	private String apellido;
 
 	@NotEmpty
+	@Size(min = 3, max = 8)
 	private String username;
 
 	@NotEmpty
 	private String password;
 
+	//@NotEmpty(message = "campo requerido")
 	@NotEmpty
+	//@Email(message = "correo incorrecto")
+	@Email
 	private String email;
 
 	public String getIdentificador() {
